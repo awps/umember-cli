@@ -32,7 +32,19 @@ class Config extends AbstractConfigLoader
 {
     public function enqueue()
     {
-        // Scripts and styles
+        wp_enqueue_style(
+            'umember-block--__DIRNAME__',
+            UMEMBER_URL . "css/blocks/__DIRNAME__.css",
+            [],
+            UMEMBER_VERSION
+        );
+        wp_enqueue_script(
+            'umember-block--__DIRNAME__',
+            UMEMBER_URL . "js/blocks/__DIRNAME__.js",
+            [],
+            UMEMBER_VERSION,
+            true
+        );
     }
 
     public function customCss()

@@ -51,6 +51,7 @@ class Cmd {
         fs.writeFileSync(
             `${block_path}/config.php`,
             this.tpl.php.replace(/__NS_SUFFIX__/gi, this.pascal)
+                .replace(/__DIRNAME__/gi, this.kebab)
         )
 
 
