@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Replace stable tag
+        run: chmod +x ./build.sh && ./build.sh
 
   publish-npm:
     needs: build

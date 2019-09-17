@@ -1,0 +1,16 @@
+{
+    "name": "umember-cli",
+    "version": "__STABLE_TAG__",
+    "description": "CLI commands for working with uMember plugin and its extensions.",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/awps/umember-cli.git"
+    },
+    "author": "Andrew Surdu",
+    "license": "ISC",
+    "homepage": "https://github.com/awps/umember-cli#readme"
+}
