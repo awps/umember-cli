@@ -12,7 +12,9 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Replace stable tag
-        run: chmod +x ./build.sh && ./build.sh
+        run: |
+          chmod +x ./build.sh && ./build.sh
+          rm -rf ./build.sh
 
       - uses: actions/setup-node@v1
         with:
