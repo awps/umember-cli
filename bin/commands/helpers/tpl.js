@@ -35,12 +35,12 @@ new Block('__DIRNAME__', block => {
     // Scripts for public
 })
 `,
-    blade: `<div class="umember-block umember-block--__DIRNAME__" data-umember-block="__DIRNAME__">
+    blade: `<div <?php echo umember_block_html_attributes(); ?>>
     <pre>
         <?php print_r(htmlentities(var_export(umember_block_attributes(), true)) . PHP_EOL); ?>
     </pre>
 </div>`,
-    scss: `.umember-block--__DIRNAME__{
+    scss: `.umember-block-__DIRNAME__{
     position: relative;
 }`,
     php: `<?php
