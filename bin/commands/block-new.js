@@ -79,6 +79,12 @@ class Cmd {
             to: `@import "../../blocks/${this.kebab}/style";
 //UMEMBER_BLOCKS_IMPORT`,
         })
+        replaceInFile.sync({
+            files: './src/js/main/index.js',
+            from: /\/\/UMEMBER_BLOCKS_IMPORT/gi,
+            to: `import '../../blocks/${this.kebab}/public'
+//UMEMBER_BLOCKS_IMPORT`,
+        })
 
         // Register the block in for admin use
         // ----------------------------------------------------------------------------

@@ -66,6 +66,13 @@ module.exports = function (args) {
             to: '',
         })
 
+        replaceInFile.sync({
+            files: './src/js/main/index.js',
+            from: `import '../../blocks/${kebab}/public'
+`, // important to be on new line
+            to: '',
+        })
+
         // Delete the admin settings js file import
         // ----------------------------------------------------------------------------
         replaceInFile.sync({
