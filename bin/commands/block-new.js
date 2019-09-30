@@ -32,12 +32,16 @@ class Cmd {
 
         fs.writeFileSync(
             `${block_path}/settings.js`,
-            this.tpl.js.replace(/__DIRNAME__/gi, this.kebab)
+            this.tpl.settings.replace(/__DIRNAME__/gi, this.kebab)
                 .replace(/__TITLE__/gi, this.label)
         )
         fs.writeFileSync(
             `${block_path}/public.js`,
-            this.tpl.jsPublic.replace(/__DIRNAME__/gi, this.kebab)
+            this.tpl.public.replace(/__DIRNAME__/gi, this.kebab)
+        )
+        fs.writeFileSync(
+            `${block_path}/edit.js`,
+            this.tpl.edit.replace(/__DIRNAME__/gi, this.kebab)
         )
         fs.writeFileSync(
             `${block_path}/view.blade.php`,
@@ -69,12 +73,19 @@ class Cmd {
     }
 
     registerBlock() {
+        replaceInFile.sync({
+            files: './src/css/main/index.scss',
+            from: /\/\/UMEMBER_BLOCKS_IMPORT/gi,
+            to: `@import "../../blocks/${this.kebab}/style";
+//UMEMBER_BLOCKS_IMPORT`,
+        })
+
         // Register the block in for admin use
         // ----------------------------------------------------------------------------
         replaceInFile.sync({
             files: './src/js/blocks/index.js',
             from: /\/\/UMEMBER_BLOCKS_IMPORT/gi,
-            to: `import * as ${this.camel} from 'src/blocks/${this.kebab}/settings'
+            to: `import * as ${this.camel} from '../../blocks/${this.kebab}/settings'
 //UMEMBER_BLOCKS_IMPORT`,
         })
         replaceInFile.sync({

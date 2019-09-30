@@ -59,11 +59,18 @@ module.exports = function (args) {
         // ----------------------------------------------------------------------------
         rimraf.sync(`./.idea/scopes/block_${snake}.xml`)
 
+        replaceInFile.sync({
+            files: './src/css/main/index.scss',
+            from: `@import "../../blocks/${kebab}/style";
+`, // important to be on new line
+            to: '',
+        })
+
         // Delete the admin settings js file import
         // ----------------------------------------------------------------------------
         replaceInFile.sync({
             files: './src/js/blocks/index.js',
-            from: `import * as ${camel} from 'src/blocks/${kebab}/settings'
+            from: `import * as ${camel} from '../../blocks/${kebab}/settings'
 `, // important to be on new line
             to: '',
         })

@@ -1,14 +1,35 @@
 module.exports = {
-    js: `const { __ } = wp.i18n
+    settings: `import edit from './edit'
+
+const {__} = wp.i18n
 
 export const settings = {
-    name:         'umember/__DIRNAME__',
-    title:        __( '__TITLE__' ),
-    modalOptions: {},
-    sideOptions:  {},
+    name: 'umember/__DIRNAME__',
+    title: __('__TITLE__', 'umember'),
+    icon: {
+        src: 'grid-view',
+        size: 20,
+    },
+    edit
+}`,
+    edit: `import uMemberComponent from "src/js/blocks/uMemberComponent";
+
+export default class Edit extends uMemberComponent {
+
+    constructor() {
+        super(...arguments);
+
+        this.state = {
+            hello: 'Hello World!',
+        };
+    }
+
+    render() {
+        return (<div>{this.state.hello}</div>);
+    }
 }
 `,
-    jsPublic: `import Block from "src/js/blocks/main/Block";
+    public: `import Block from "../../js/main/Block";
 
 new Block('__DIRNAME__', block => {
     // Scripts for public
@@ -30,26 +51,20 @@ use uMember\\Builder\\AbstractConfigLoader;
 
 class Config extends AbstractConfigLoader
 {
+   public function adminEnqueue()
+    {
+    }
+
     public function enqueue()
     {
-        wp_enqueue_style(
-            'umember-block--__DIRNAME__',
-            UMEMBER_URL . "css/blocks/__DIRNAME__.css",
-            [],
-            UMEMBER_VERSION
-        );
-        wp_enqueue_script(
-            'umember-block--__DIRNAME__',
-            UMEMBER_URL . "js/blocks/__DIRNAME__.js",
-            [],
-            UMEMBER_VERSION,
-            true
-        );
     }
 
     public function customCss()
     {
-        // Custom CSS
+    }
+
+    public function data()
+    {
     }
 }
 
