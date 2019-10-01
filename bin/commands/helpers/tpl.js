@@ -36,9 +36,11 @@ new Block('__DIRNAME__', block => {
 })
 `,
     blade: `<div <?php echo umember_block_html_attributes(); ?>>
-    <pre>
-        <?php print_r(htmlentities(var_export(umember_block_attributes(), true)) . PHP_EOL); ?>
-    </pre>
+    <div class="umember-block__inner">
+        <pre>
+            <?php print_r(htmlentities(var_export(umember_block_attributes(), true)) . PHP_EOL); ?>
+        </pre>
+    </div>
 </div>`,
     scss: `.umember-block-__DIRNAME__{
     position: relative;
